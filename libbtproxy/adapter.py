@@ -4,7 +4,7 @@ from __future__ import print_function
 from . import argparser
 args = argparser.args
 import subprocess,sys,re,imp,os
-import bluetooth
+import bluetooth, clone
 
 def _run(cmd):
     try:
@@ -67,7 +67,7 @@ def adapter_address(inter, addr=None):
     if addr is not None:
         inter = int(str(inter).replace('hci',''))
         if (bluetooth.is_valid_address(addr)):
-            print('device set to ' + set_adapter_address(inter,addr))
+            print('device set to ' + clone.set_adapter_address(inter,addr))
         else:
             raise ValueError('Invalid Address: '+addr);
     else:
