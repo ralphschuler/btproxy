@@ -1,6 +1,6 @@
 name: Main
 on:
-  push:
+  release:
     branches: [ main ]
     
 env:
