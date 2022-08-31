@@ -8,7 +8,9 @@ services:
     devices:
       - "/dev/bus/usb/004/003"
       - "/dev/bus/usb/001/003"
+    volumes:
+      - /run/dbus/system_bus_socket:/run/dbus/system_bus_socket
     environment:
       MASTER_ADDRESS: ""
       SLAVE_ADDRESS: ""
-      DBUS_SYSTEM_BUS_ADDRESS: unix:path=/host/run/dbus/system_bus_socket
+      DBUS_SYSTEM_BUS_ADDRESS: unix:path=/run/dbus/system_bus_socket
