@@ -28,4 +28,4 @@ RUN apt-get clean && \
 
 RUN python3 setup.py install
 
-CMD [ "btproxy",  "${MASTER_ADDRESS}",  "${SLAVE_ADDRESS}" ]
+CMD [ "btproxy",  ${MASTER_ADDRESS},  ${SLAVE_ADDRESS} ]
