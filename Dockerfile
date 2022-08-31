@@ -1,8 +1,4 @@
 FROM debian:latest
-
-ARG MASTER_ADDRESS=""
-ARG SLAVE_ADDRESS=""
-
 WORKDIR /app
 
 COPY . /app
@@ -28,4 +24,4 @@ RUN apt-get clean && \
 
 RUN python3 setup.py install
 
-CMD [ "btproxy",  "${MASTER_ADDRESS}",  "${SLAVE_ADDRESS}" ]
+ENTRYPOINT [ "btproxy" ]

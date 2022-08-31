@@ -4,9 +4,7 @@ services:
   btproxy:
     build:
       context: .
-      args:
-        MASTER_ADDRESS: ""
-        SLAVE_ADDRESS: ""
+    command: "<MASTER_ADDRESS> <SLAVE_ADDRESS>"
     container_name: btproxy
     privileged: true
     devices:
