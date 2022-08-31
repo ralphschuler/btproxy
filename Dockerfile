@@ -18,7 +18,11 @@ RUN apt-get update && apt-get install -y \
     bluez \
     bluez-tools \
     libbluetooth-dev \
-    python3-dev
+    python3-dev \
+    sudo \
+    procps && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN python3 setup.py install
 
