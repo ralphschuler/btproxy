@@ -2,7 +2,11 @@ version: '3.0'
 
 services:
   btproxy:
-    build: .
+    build:
+      context: .
+      args:
+        MASTER_ADDRESS: ""
+        SLAVE_ADDRESS: ""
     container_name: btproxy
     privileged: true
     devices:
@@ -11,6 +15,4 @@ services:
     volumes:
       - /run/dbus/system_bus_socket:/run/dbus/system_bus_socket
     environment:
-      MASTER_ADDRESS: ""
-      SLAVE_ADDRESS: ""
       DBUS_SYSTEM_BUS_ADDRESS: unix:path=/run/dbus/system_bus_socket

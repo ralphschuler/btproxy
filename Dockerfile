@@ -1,5 +1,8 @@
 FROM debian:latest
 
+ARG MASTER_ADDRESS=""
+ARG SLAVE_ADDRESS=""
+
 WORKDIR /app
 
 COPY . /app
