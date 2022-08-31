@@ -1,8 +1,5 @@
 FROM debian:latest
 
-ENV MASTER_ADDRESS=""
-ENV SLAVE_ADDRESS=""
-
 WORKDIR /app
 
 COPY . /app
