@@ -4,7 +4,6 @@ services:
   btproxy:
     build: .
     container_name: btproxy
-    restart: never
     privileged: true
     devices:
       - "/dev/bus/usb/004/003"
