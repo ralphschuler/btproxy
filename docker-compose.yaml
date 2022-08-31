@@ -1,0 +1,13 @@
+version: '3.0'
+
+services:
+  btproxy:
+    build: .
+    container_name: btproxy
+    restart: always
+    devices:
+      - "/dev/bus/usb/004/003"
+      - "/dev/bus/usb/001/003"
+    environment:
+      MASTER_ADDRESS: ""
+      SLAVE_ADDRESS: ""
