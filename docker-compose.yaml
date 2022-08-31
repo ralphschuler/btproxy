@@ -4,10 +4,12 @@ services:
   btproxy:
     build: .
     container_name: btproxy
-    restart: always
+    restart: never
+    privileged: true
     devices:
       - "/dev/bus/usb/004/003"
       - "/dev/bus/usb/001/003"
     environment:
       MASTER_ADDRESS: ""
       SLAVE_ADDRESS: ""
+      DBUS_SYSTEM_BUS_ADDRESS: unix:path=/host/run/dbus/system_bus_socket
