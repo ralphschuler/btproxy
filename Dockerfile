@@ -1,27 +1,23 @@
-FROM debian:latest
-WORKDIR /app
+FROM debian:8.2
 
-COPY . /app
+ENV BUILD_PACKAGES="bluez bluez-tools libbluetooth-dev python-dev python-pip wget zip"
+ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update
-RUN apt-get install -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common
-RUN apt-get install -y python3 \
-    python3-pip \
-    bluez \
-    bluez-tools \
-    libbluetooth-dev \
-    python3-dev
-RUN apt-get install -y \
-    sudo \
-    procps
-RUN apt-get clean && \
+RUN apt-get clean &&\
+    apt-get -y update && \
+    apt-get -y dist-upgrade && \
+    apt-get install -y $BUILD_PACKAGES && \
+    apt-get autoremove -y && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN python3 setup.py install
+COPY . /btproxy
 
-ENTRYPOINT [ "btproxy" ]
+RUN wget https://github.com/pybluez/pybluez/archive/master.zip -O /tmp/pybluez.zip && \
+    unzip /tmp/pybluez.zip -d /tmp && \
+    cd /tmp/pybluez-master && \
+    python setup.py install
+
+RUN cd btproxy; python setup.py install
+
+WORKDIR /workdir

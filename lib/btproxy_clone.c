@@ -115,6 +115,7 @@ static PyMethodDef py_module_methods[] = {
     {NULL, NULL}
 };
 
+#if defined PYTHON34 || defined PYTHON340
 static struct PyModuleDef clone_module = {
     PyModuleDef_HEAD_INIT,
     "clone",   /* name of module */
@@ -128,6 +129,13 @@ PyInit_clone(void)
 {
     return PyModule_Create(&clone_module);
 }
+#else
+// Called by python first
+void initclone(void)
+{
+    (void) Py_InitModule("clone", py_module_methods);
+}
+#endif
 
 
 
